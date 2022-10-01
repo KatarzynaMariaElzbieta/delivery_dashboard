@@ -1,18 +1,4 @@
-import dash_bootstrap_components as dbc
 from dash import dcc, html
-
-card_content = [
-    dbc.CardHeader("Card header"),
-    dbc.CardBody(
-        [
-            html.H5("Card title", className="card-title"),
-            html.P(
-                "This is some card content that we'll reuse",
-                className="card-text",
-            ),
-        ]
-    ),
-]
 
 
 def create_main_layout(page_registry, page_container):

@@ -101,6 +101,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "dash-leaflet"
+version = "0.1.23"
+description = "Leaflet component for Dash"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+geobuf = "*"
+
+[[package]]
 name = "dash-table"
 version = "5.0.0"
 description = "Dash table"
@@ -150,6 +161,50 @@ python-versions = ">=3.7"
 [package.dependencies]
 packaging = "*"
 SQLAlchemy = ">=1.4"
+
+[[package]]
+name = "geobuf"
+version = "1.1.1"
+description = "Geobuf is a compact binary geospatial format for lossless compression of GeoJSON and TopoJSON data."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+click = "*"
+protobuf = "*"
+six = "*"
+
+[package.extras]
+test = ["pytest"]
+
+[[package]]
+name = "geographiclib"
+version = "1.52"
+description = "The geodesic routines from GeographicLib"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "geopy"
+version = "2.2.0"
+description = "Python Geocoding Toolbox"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+geographiclib = ">=1.49,<2"
+
+[package.extras]
+aiohttp = ["aiohttp"]
+dev = ["async-generator", "coverage", "flake8 (>=3.8.0,<3.9.0)", "isort (>=5.6.0,<5.7.0)", "pytest (>=3.10)", "pytest-aiohttp", "readme-renderer", "sphinx", "sphinx-issues", "sphinx-rtd-theme (>=0.5.0)"]
+dev-docs = ["readme-renderer", "sphinx", "sphinx-issues", "sphinx-rtd-theme (>=0.5.0)"]
+dev-lint = ["async-generator", "flake8 (>=3.8.0,<3.9.0)", "isort (>=5.6.0,<5.7.0)"]
+dev-test = ["async-generator", "coverage", "pytest (>=3.10)", "pytest-aiohttp", "sphinx"]
+requests = ["requests (>=2.16.2)", "urllib3 (>=1.24.2)"]
+timezone = ["pytz"]
 
 [[package]]
 name = "greenlet"
@@ -300,6 +355,14 @@ python-versions = ">=3.6"
 tenacity = ">=6.2.0"
 
 [[package]]
+name = "protobuf"
+version = "4.21.6"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "psycopg2-binary"
 version = "2.9.3"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
@@ -433,7 +496,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "da81b820be813cb5051e748143b6da0942b05a46117c12216d3aab800d75b118"
+content-hash = "4955b8d22b7db60a8d185bbcd64acd635d52db779082fc0f0f7b0fbd72322b92"
 
 [metadata.files]
 black = [
@@ -549,6 +612,10 @@ dash-html-components = [
     {file = "dash_html_components-2.0.0-py3-none-any.whl", hash = "sha256:b42cc903713c9706af03b3f2548bda4be7307a7cf89b7d6eae3da872717d1b63"},
     {file = "dash_html_components-2.0.0.tar.gz", hash = "sha256:8703a601080f02619a6390998e0b3da4a5daabe97a1fd7a9cebc09d015f26e50"},
 ]
+dash-leaflet = [
+    {file = "dash_leaflet-0.1.23-py3-none-any.whl", hash = "sha256:484159bc543c0899bde2e4c9518143494876b9d51b64b2b2eab312c9ed7a9058"},
+    {file = "dash_leaflet-0.1.23.tar.gz", hash = "sha256:260c81e63f73d47bf71f634810a62736512aca38b29cb3427d024ee4c93820b5"},
+]
 dash-table = [
     {file = "dash_table-5.0.0-py3-none-any.whl", hash = "sha256:19036fa352bb1c11baf38068ec62d172f0515f73ca3276c79dee49b95ddc16c9"},
     {file = "dash_table-5.0.0.tar.gz", hash = "sha256:18624d693d4c8ef2ddec99a6f167593437a7ea0bf153aa20f318c170c5bc7308"},
@@ -564,6 +631,19 @@ Flask-Compress = [
 GeoAlchemy2 = [
     {file = "GeoAlchemy2-0.12.5-py2.py3-none-any.whl", hash = "sha256:3a59eb651df95b3dfee8e1d82f4d18c80b75f712860a0a3080defc6b0435070d"},
     {file = "GeoAlchemy2-0.12.5.tar.gz", hash = "sha256:31c2502dce317b57b335e4eb87562d501fa39e46c728be514d9b86091e08dd67"},
+]
+geobuf = [
+    {file = "geobuf-1.1.1-py2-none-any.whl", hash = "sha256:e6298e0608b2fcb4fc23530760fbe03862449f44ac5f5065aeb9304ce3d23299"},
+    {file = "geobuf-1.1.1-py3-none-any.whl", hash = "sha256:a6b81a0a09505996ee23b6caa303cde8c0d2f75d31826241a452a19bf675f8c2"},
+    {file = "geobuf-1.1.1.tar.gz", hash = "sha256:9c645a2ef7c0a8679b1088981e286357823a2291322de6d0b9ee523212933e9a"},
+]
+geographiclib = [
+    {file = "geographiclib-1.52-py3-none-any.whl", hash = "sha256:8f441c527b0b8a26cd96c965565ff0513d1e4d9952b704bf449409e5015c77b7"},
+    {file = "geographiclib-1.52.tar.gz", hash = "sha256:ac400d672b8954b0306bca890b088bb8ba2a757dc8133cca0b878f34b33b2740"},
+]
+geopy = [
+    {file = "geopy-2.2.0-py3-none-any.whl", hash = "sha256:8f1f949082b964385de61fcc3a667a6a9a6e242beb1ae8972449f164b2ba0e89"},
+    {file = "geopy-2.2.0.tar.gz", hash = "sha256:58b7edf526b8c32e33126570b5f4fcdfaa29d4416506064777ae8d84cd103fdd"},
 ]
 greenlet = [
     {file = "greenlet-1.1.3-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:8c287ae7ac921dfde88b1c125bd9590b7ec3c900c2d3db5197f1286e144e712b"},
@@ -757,6 +837,22 @@ platformdirs = [
 plotly = [
     {file = "plotly-5.10.0-py2.py3-none-any.whl", hash = "sha256:989b13825cc974390aa0169479485d9257d37848a47bc63957251f8e1a7046ba"},
     {file = "plotly-5.10.0.tar.gz", hash = "sha256:4d36d9859b7a153b273562deeed8c292587a472eb1fd57cd4158ec89d9defadb"},
+]
+protobuf = [
+    {file = "protobuf-4.21.6-cp310-abi3-win32.whl", hash = "sha256:49f88d56a9180dbb7f6199c920f5bb5c1dd0172f672983bb281298d57c2ac8eb"},
+    {file = "protobuf-4.21.6-cp310-abi3-win_amd64.whl", hash = "sha256:7a6cc8842257265bdfd6b74d088b829e44bcac3cca234c5fdd6052730017b9ea"},
+    {file = "protobuf-4.21.6-cp37-abi3-macosx_10_9_universal2.whl", hash = "sha256:ba596b9ffb85c909fcfe1b1a23136224ed678af3faf9912d3fa483d5f9813c4e"},
+    {file = "protobuf-4.21.6-cp37-abi3-manylinux2014_aarch64.whl", hash = "sha256:4143513c766db85b9d7c18dbf8339673c8a290131b2a0fe73855ab20770f72b0"},
+    {file = "protobuf-4.21.6-cp37-abi3-manylinux2014_x86_64.whl", hash = "sha256:b6cea204865595a92a7b240e4b65bcaaca3ad5d2ce25d9db3756eba06041138e"},
+    {file = "protobuf-4.21.6-cp37-cp37m-win32.whl", hash = "sha256:9666da97129138585b26afcb63ad4887f602e169cafe754a8258541c553b8b5d"},
+    {file = "protobuf-4.21.6-cp37-cp37m-win_amd64.whl", hash = "sha256:308173d3e5a3528787bb8c93abea81d5a950bdce62840d9760effc84127fb39c"},
+    {file = "protobuf-4.21.6-cp38-cp38-win32.whl", hash = "sha256:aa29113ec901281f29d9d27b01193407a98aa9658b8a777b0325e6d97149f5ce"},
+    {file = "protobuf-4.21.6-cp38-cp38-win_amd64.whl", hash = "sha256:8f9e60f7d44592c66e7b332b6a7b4b6e8d8b889393c79dbc3a91f815118f8eac"},
+    {file = "protobuf-4.21.6-cp39-cp39-win32.whl", hash = "sha256:80e6540381080715fddac12690ee42d087d0d17395f8d0078dfd6f1181e7be4c"},
+    {file = "protobuf-4.21.6-cp39-cp39-win_amd64.whl", hash = "sha256:77b355c8604fe285536155286b28b0c4cbc57cf81b08d8357bf34829ea982860"},
+    {file = "protobuf-4.21.6-py2.py3-none-any.whl", hash = "sha256:07a0bb9cc6114f16a39c866dc28b6e3d96fa4ffb9cc1033057412547e6e75cb9"},
+    {file = "protobuf-4.21.6-py3-none-any.whl", hash = "sha256:c7c864148a237f058c739ae7a05a2b403c0dfa4ce7d1f3e5213f352ad52d57c6"},
+    {file = "protobuf-4.21.6.tar.gz", hash = "sha256:6b1040a5661cd5f6e610cbca9cfaa2a17d60e2bb545309bc1b278bb05be44bdd"},
 ]
 psycopg2-binary = [
     {file = "psycopg2-binary-2.9.3.tar.gz", hash = "sha256:761df5313dc15da1502b21453642d7599d26be88bff659382f8f9747c7ebea4e"},
