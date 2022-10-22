@@ -43,5 +43,5 @@ def create_deliverer(n_clicks, deliverer_name):
         with Session() as session:
             session.add(deliver)
             session.commit()
-        return dbc.Alert(f'Dostawca {deliverer_name} został dodany do bazy.')
-    return ''
+        return dbc.Alert(f"Dostawca {deliverer_name} został dodany do bazy.")
+    return ""

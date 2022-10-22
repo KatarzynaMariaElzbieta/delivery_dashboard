@@ -1,4 +1,5 @@
 from geoalchemy2 import Geometry
+
 # from orm_settings import engine
 from sqlalchemy import DECIMAL, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import declarative_base, relationship
@@ -10,9 +11,9 @@ class Restaurants(Base):
     __tablename__ = "restaurants"
     id = Column(Integer, primary_key=True)
     name = Column(String(120))
-    location = Column(Geometry)
+    location = Column(Geometry(geometry_type='POINT', srid=4326))
     type_id = Column(Integer)
-    address = Column(String(200), unique=True)
+    address = Column(String, unique=True)
     orders = relationship("Orders", back_populates="restaurants")
 
 
