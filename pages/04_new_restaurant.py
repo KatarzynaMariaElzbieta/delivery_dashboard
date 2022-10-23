@@ -1,9 +1,10 @@
 import dash
 import dash_bootstrap_components as dbc
 import folium
-from dash import Input, Output, State, html, dcc
+from dash import Input, Output, State, dcc, html
 
-from dashboard_app.controler.geo_location import get_coordinates, get_address, coordinates_to_point
+from dashboard_app.controler.geo_location import (coordinates_to_point,
+                                                  get_address, get_coordinates)
 from dashboard_app.models.dictionaries import restaurant_types
 from dashboard_app.models.models import Restaurants
 from dashboard_app.models.orm_settings import Session

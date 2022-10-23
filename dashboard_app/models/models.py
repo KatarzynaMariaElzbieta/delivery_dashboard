@@ -11,7 +11,7 @@ class Restaurants(Base):
     __tablename__ = "restaurants"
     id = Column(Integer, primary_key=True)
     name = Column(String(120))
-    location = Column(Geometry(geometry_type='POINT', srid=4326))
+    location = Column(Geometry(geometry_type="POINT", srid=4326))
     type_id = Column(Integer)
     address = Column(String, unique=True)
     orders = relationship("Orders", back_populates="restaurants")

@@ -1,7 +1,8 @@
+from geoalchemy2 import func
 from geopy import geocoders
 
 from dashboard_app.models.orm_settings import Session
-from geoalchemy2 import func
+
 geocoders.options.default_user_agent = "1"
 geocoders.options.default_timeout = 7
 geolocator = geocoders.Nominatim()
@@ -14,7 +15,7 @@ def get_coordinates(address):
 
 def get_address(address):
     coordinates = geolocator.geocode(query=address, addressdetails=True)
-    add = coordinates.raw['address']
+    add = coordinates.raw["address"]
     return f"{add['road']} {add['house_number']}, {add['postcode']} {add['city']}"
 
 
