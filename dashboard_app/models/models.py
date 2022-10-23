@@ -1,7 +1,7 @@
 from geoalchemy2 import Geometry
 
 # from orm_settings import engine
-from sqlalchemy import DECIMAL, Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import ARRAY, DECIMAL, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
@@ -36,8 +36,8 @@ class Orders(Base):
     delivery_datetime = Column(DateTime)
     deliverer_id = Column(Integer, ForeignKey("deliverers.id"))
     deliverer = relationship(Deliverers, back_populates="orders")
-    delivery_problems = Column(String)
-    food_problems = Column(Integer)
+    delivery_problems = Column(ARRAY(Integer))
+    food_problems = Column(ARRAY(Integer))
     description = Column(String)
     rating = Column(Integer)
 

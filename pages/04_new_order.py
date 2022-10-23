@@ -2,12 +2,12 @@ from datetime import datetime as dt
 
 import dash
 import dash_bootstrap_components as dbc
-from dash import dcc, html
+from dash import Input, Output, State, dcc, html
 
 from dashboard_app.models.dictionaries import (delivery_method,
                                                delivery_problems,
                                                food_problems)
-from dashboard_app.models.models import Deliverers, Restaurants
+from dashboard_app.models.models import Deliverers, Orders, Restaurants
 from dashboard_app.models.orm_settings import Session
 
 dash.register_page(__name__)
@@ -90,7 +90,7 @@ def create_new_order_layout():
                                                                 {"label": value, "value": key}
                                                                 for key, value in delivery_method.items()
                                                             ],
-                                                            id="order_deliverer",
+                                                            id="order_deliverer_transport",
                                                         )
                                                     ),
                                                 ]
@@ -115,11 +115,6 @@ def create_new_order_layout():
                                                         id="deliverer_problems_dropdown",
                                                         multi=True
                                                     ),
-                                                    dcc.Textarea(
-                                                        id='delivery_problem_text',
-                                                        value='',
-                                                        style={'width': '100%', 'height': 300},
-                                                    ),
                                                 ]),
                                             ]
                                         ),
@@ -134,11 +129,6 @@ def create_new_order_layout():
                                                         ],
                                                         id="food_problems_dropdown",
                                                         multi=True,
-                                                    ),
-                                                    dcc.Textarea(
-                                                        id="food_problem_text",
-                                                        value='',
-                                                        style={'width': '100%', 'height': 300},
                                                     ),
                                                 ]),
                                             ]
@@ -155,12 +145,12 @@ def create_new_order_layout():
                                             ]
                                         ),
 
-                                    html.Div(
-                                        [
-                                            dbc.Label("Ocena zamówienia:"),
-                                            dcc.Slider(0, 10, step=1, value=5, id="order_rating"),
-                                        ]
-                                    ),
+                                        html.Div(
+                                            [
+                                                dbc.Label("Ocena zamówienia:"),
+                                                dcc.Slider(0, 10, step=1, value=5, id="order_rating"),
+                                            ]
+                                        ),
                                     ], id="comments", style={"width": "-webkit-fill-available"}),
                                     dbc.Col(
                                         dbc.Button("Submit", color="primary", id="order_submit_btn"), width="auto"
@@ -172,6 +162,7 @@ def create_new_order_layout():
                     ),
                 ],
             ),
+            html.Div(id='order_info'),
         ],
         id='new_order',
         className='content'
@@ -179,3 +170,53 @@ def create_new_order_layout():
 
 
 layout = create_new_order_layout()
+
+
+@dash.callback(
+    Output("order_info", "children"),
+    Input("order_submit_btn", "n_clicks"),
+    [
+        State("order_start_time", "value"),
+        State("order_stop_time", "value"),
+        State("restaurant_name", "value"),
+        State("order_cost", "value"),
+        State("order_deliverer", "value"),
+        State("order_deliverer_transport", "value"),
+        State("delivery_cost", "value"),
+        State("deliverer_problems_dropdown", "value"),
+        State("food_problems_dropdown", "value"),
+        State("order_description", "value"),
+        State("order_rating", "value"),
+    ],
+)
+def create_deliverer(n_clicks,
+                     order_start_time,
+                     order_stop_time,
+                     restaurant_name,
+                     order_cost,
+                     order_deliverer,
+                     order_deliverer_transport,
+                     delivery_cost,
+                     deliverer_problems_dropdown,
+                     food_problems_dropdown,
+                     order_description,
+                     order_rating):
+    if n_clicks:
+        order = Orders(order_create_date=order_start_time,
+                       delivery_datetime=order_stop_time,
+                       costs_of_food=order_cost,
+                       cost_of_delivery=delivery_cost,
+                       means_of_transport=order_deliverer_transport,
+                       delivery_problems=list(deliverer_problems_dropdown),
+                       food_problems=list(food_problems_dropdown),
+                       description=order_description,
+                       rating=order_rating
+                       )
+
+        with Session() as session:
+            order.restaurant = session.query(Restaurants).filter(Restaurants.id == restaurant_name).one()
+            order.deliverer = session.query(Deliverers).filter(Deliverers.id == order_deliverer).one()
+            session.add(order)
+            session.commit()
+        return dbc.Alert(f"Zamówienie zostało dodane do bazy.")
+    return ""
