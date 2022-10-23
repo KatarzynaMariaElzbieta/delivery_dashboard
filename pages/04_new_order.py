@@ -189,7 +189,7 @@ layout = create_new_order_layout()
         State("order_rating", "value"),
     ],
 )
-def create_deliverer(n_clicks,
+def create_order(n_clicks,
                      order_start_time,
                      order_stop_time,
                      restaurant_name,
