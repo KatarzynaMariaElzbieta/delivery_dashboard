@@ -1,7 +1,7 @@
 from geoalchemy2 import Geometry
-
 # from orm_settings import engine
-from sqlalchemy import ARRAY, DECIMAL, Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import (ARRAY, DECIMAL, Column, DateTime, ForeignKey, Integer,
+                        String)
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
