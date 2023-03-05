@@ -1,3 +1,4 @@
+import dash
 from dash import dcc, html
 
 
@@ -16,10 +17,11 @@ def create_main_layout(page_registry, page_container):
                             )
                             for page in page_registry.values()
                         ],
+                        className='menu-container'
                     ),
                 ],
                 id="sidebar",
-                className="sidebar",
+                className="bar side-bar",
             ),
             page_container,
         ],

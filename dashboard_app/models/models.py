@@ -1,8 +1,9 @@
 from geoalchemy2 import Geometry
-# from orm_settings import engine
 from sqlalchemy import (ARRAY, DECIMAL, Column, DateTime, ForeignKey, Integer,
                         String)
 from sqlalchemy.orm import declarative_base, relationship
+
+# from dashboard_app.models.orm_settings import engine
 
 Base = declarative_base()
 
@@ -14,7 +15,7 @@ class Restaurants(Base):
     location = Column(Geometry(geometry_type="POINT", srid=4326))
     type_id = Column(Integer)
     address = Column(String, unique=True)
-    orders = relationship("Orders", back_populates="restaurants")
+    orders = relationship("Orders", back_populates="restaurant")
 
 
 class Deliverers(Base):
@@ -28,7 +29,7 @@ class Orders(Base):
     __tablename__ = "orders"
     id = Column(Integer, primary_key=True)
     restaurant_id = Column(Integer, ForeignKey("restaurants.id"))
-    restaurants = relationship(Restaurants, back_populates="orders")
+    restaurant = relationship(Restaurants, back_populates="orders")
     costs_of_food = Column(DECIMAL)
     means_of_transport = Column(Integer)
     cost_of_delivery = Column(DECIMAL)
