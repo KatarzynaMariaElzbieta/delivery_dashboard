@@ -169,7 +169,7 @@ def create_new_order_layout():
     )
 
 
-layout = create_new_order_layout()
+layout = create_new_order_layout
 
 
 @dash.callback(
@@ -190,17 +190,17 @@ layout = create_new_order_layout()
     ],
 )
 def create_order(n_clicks,
-                     order_start_time,
-                     order_stop_time,
-                     restaurant_name,
-                     order_cost,
-                     order_deliverer,
-                     order_deliverer_transport,
-                     delivery_cost,
-                     deliverer_problems_dropdown,
-                     food_problems_dropdown,
-                     order_description,
-                     order_rating):
+                 order_start_time,
+                 order_stop_time,
+                 restaurant_name,
+                 order_cost,
+                 order_deliverer,
+                 order_deliverer_transport,
+                 delivery_cost,
+                 deliverer_problems_dropdown,
+                 food_problems_dropdown,
+                 order_description,
+                 order_rating):
     if n_clicks:
         order = Orders(order_create_date=order_start_time,
                        delivery_datetime=order_stop_time,
@@ -216,6 +216,8 @@ def create_order(n_clicks,
         with Session() as session:
             order.restaurant = session.query(Restaurants).filter(Restaurants.id == restaurant_name).one()
             order.deliverer = session.query(Deliverers).filter(Deliverers.id == order_deliverer).one()
+            print(restaurant_name)
+            print(order.restaurant.name)
             session.add(order)
             session.commit()
         return dbc.Alert(f"Zamówienie zostało dodane do bazy.")

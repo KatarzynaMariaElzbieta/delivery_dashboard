@@ -131,6 +131,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "dash-iconify"
+version = "0.1.2"
+description = "Iconify for Plotly Dash"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "dash-leaflet"
 version = "0.1.23"
 description = "Leaflet component for Dash"
@@ -582,7 +590,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c4a7c1a7c0d33c6b4b8a8fe1a6de456e89785bf326788fdd67697400ad1c19e5"
+content-hash = "706b1b28a098d63d4ef4bf6e43ecdc2e0b29c7976b8550e34b1a6536e0db23cc"
 
 [metadata.files]
 black = [
@@ -709,6 +717,10 @@ dash-core-components = [
 dash-html-components = [
     {file = "dash_html_components-2.0.0-py3-none-any.whl", hash = "sha256:b42cc903713c9706af03b3f2548bda4be7307a7cf89b7d6eae3da872717d1b63"},
     {file = "dash_html_components-2.0.0.tar.gz", hash = "sha256:8703a601080f02619a6390998e0b3da4a5daabe97a1fd7a9cebc09d015f26e50"},
+]
+dash-iconify = [
+    {file = "dash_iconify-0.1.2-py3-none-any.whl", hash = "sha256:9ab0eda19bb4514e177bf1f8f36947bb9e5b44aba6ce947f22a1cf0f1a45fc14"},
+    {file = "dash_iconify-0.1.2.tar.gz", hash = "sha256:564774be6b11b0ac3a8999b7137c3d17a1d351d69b673aa313c7228eacc9d143"},
 ]
 dash-leaflet = [
     {file = "dash_leaflet-0.1.23-py3-none-any.whl", hash = "sha256:484159bc543c0899bde2e4c9518143494876b9d51b64b2b2eab312c9ed7a9058"},
