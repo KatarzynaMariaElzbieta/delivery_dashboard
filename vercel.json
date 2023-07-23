@@ -4,9 +4,6 @@
     {
       "src": "main.py",
       "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb"
-      }
     },
     {
       "src": "poetry.lock",
@@ -19,8 +16,5 @@
       "dest": "main.py",
       "continue": true
     }
-  ],
-  "env": {
-    "VERCEL_PYTHON_VERSION": "3.8"
-  }
+  ]
 }
