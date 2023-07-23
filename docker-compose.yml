@@ -1,0 +1,25 @@
+services:
+
+  dash:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dash_dash
+    command: >
+      bash -c "poetry run python main.py"
+    volumes:
+      - code:/wd
+    ports:
+      - "5000:5000"
+    networks:
+      - default
+    env_file:
+      - .env
+
+volumes:
+  code:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: "/home/katarzyna/projects/delivery_dashboard"
